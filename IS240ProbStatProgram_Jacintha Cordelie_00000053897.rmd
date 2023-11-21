@@ -1,0 +1,550 @@
+
+Read Data
+```{r}
+library("readxl")
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+str(data)
+```
+
+#VISUALISASI DATA + STATISTIKA DESKRIPTIF
+
+DISTRIBUSI FREKUENSI FAKULTAS
+```{r}
+fakultas <- table(data$fakultas)
+
+barplot(fakultas, main = "Distribusi Frekuensi Fakultas oleh Jacintha 53897", xlab = "Fakultas", ylab = "Jumlah", col = c("red", "green", "blue", "yellow"), beside = TRUE, names.arg = c("Ekonomi & Bisnis","Ilmu Komunikasi", "Seni & Desain","Teknik & Informatika"))
+```
+ 
+
+DISTRIBUSI FREKUENSI ANGKATAN 
+```{r}
+angkatan <- table(data$angkatan)
+
+barplot(angkatan, main = "Distribusi Frekuensi Angkatan oleh Jacintha 53897", xlab = "Angkatan", ylab = "Jumlah", col = c("red", "green", "blue", "yellow"), beside = TRUE, names.arg = c("2018","2019 ", "2020","2021"))
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN TO-DO-LIST DAN JADWAL
+```{r}
+penggunaan_tdl_jadwal <- table(data$punya_jadwal_todolist)
+
+barplot(penggunaan_tdl_jadwal, main = "Distribusi Frekuensi Penggunaan Jadwal & To Do List oleh Jacintha 53897", ylab = "Jumlah", col = c("red", "green", "blue", "yellow"), beside = TRUE)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK KEPERLUAN KULIAH
+```{r}
+kuliah_informatika <- data$menit_kuliah[data$fakultas == "Teknik dan Informatika"]
+hist(kuliah_informatika, main = "Histogram Frekuensi Waktu Keperluan Kuliah (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(kuliah_informatika)
+
+kuliah_ilkom <- data$menit_kuliah[data$fakultas == "Ilmu Komunikasi"]
+hist(kuliah_ilkom, main = "Histogram Frekuensi Waktu Keperluan Kuliah (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(kuliah_ilkom)
+
+kuliah_seni <- data$menit_kuliah[data$fakultas == "Seni dan Desain"]
+hist(kuliah_seni, main = "Histogram Frekuensi Waktu Keperluan Kuliah (Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(kuliah_seni)
+
+kuliah_ekonomi <- data$menit_kuliah[data$fakultas == "Ekonomi dan Bisnis"]
+hist(kuliah_ekonomi, main = "Histogram Frekuensi Waktu Keperluan Kuliah (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(kuliah_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK HIBURAN
+```{r}
+hiburan_informatika <- data$menit_hiburan[data$fakultas == "Teknik dan Informatika"]
+hist(hiburan_informatika, main = "Histogram Frekuensi Waktu Hiburan (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(hiburan_informatika)
+
+hiburan_ilkom <- data$menit_hiburan[data$fakultas == "Ilmu Komunikasi"]
+hist(hiburan_ilkom, main = "Histogram Frekuensi Waktu Hiburan (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(hiburan_ilkom)
+
+hiburan_seni <- data$menit_hiburan[data$fakultas == "Seni dan Desain"]
+hist(hiburan_seni, main = "Histogram Frekuensi Waktu Hiburan (Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(hiburan_seni)
+
+hiburan_ekonomi <- data$menit_hiburan[data$fakultas == "Ekonomi dan Bisnis"]
+hist(hiburan_ekonomi, main = "Histogram Frekuensi Waktu Hiburan (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(hiburan_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK PENGEMBANGAN DIRI
+```{r}
+pengembangan_informatika <- data$menit_pengembangan[data$fakultas == "Teknik dan Informatika"]
+hist(pengembangan_informatika, main = "Histogram Frekuensi Waktu Pengembangan Diri (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(pengembangan_informatika)
+
+pengembangan_ilkom <- data$menit_pengembangan[data$fakultas == "Ilmu Komunikasi"]
+hist(pengembangan_ilkom, main = "Histogram Frekuensi Waktu Pengembangan Diri (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(pengembangan_ilkom)
+
+pengembangan_seni <- data$menit_pengembangan[data$fakultas == "Seni dan Desain"]
+hist(pengembangan_seni, main = "Histogram Frekuensi Waktu Pengembangan Diri (Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(pengembangan_seni)
+
+pengembangan_ekonomi <- data$menit_pengembangan[data$fakultas == "Ekonomi dan Bisnis"]
+hist(pengembangan_ekonomi, main = "Histogram Frekuensi Waktu Pengembangan Diri (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(pengembangan_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK KEPERLUAN ORGANISASI
+```{r}
+organisasi_informatika <- data$menit_organisasi[data$fakultas == "Teknik dan Informatika"]
+hist(organisasi_informatika, main = "Histogram Frekuensi Waktu Organisasi (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(organisasi_informatika)
+
+organisasi_ilkom <- data$menit_organisasi[data$fakultas == "Ilmu Komunikasi"]
+hist(organisasi_ilkom, main = "Histogram Frekuensi Waktu Organisasi (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(organisasi_ilkom)
+
+organisasi_seni <- data$menit_organisasi[data$fakultas == "Seni dan Desain"]
+hist(organisasi_seni, main = "Histogram Frekuensi Waktu Organisasi(Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(organisasi_seni)
+
+organisasi_ekonomi <- data$menit_organisasi[data$fakultas == "Ekonomi dan Bisnis"]
+hist(organisasi_ekonomi, main = "Histogram Frekuensi Waktu Organisasi (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(organisasi_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK QUALITY TIME
+```{r}
+qualitytime_informatika <- data$menit_qualitytime[data$fakultas == "Teknik dan Informatika"]
+hist(qualitytime_informatika, main = "Histogram Frekuensi Waktu Quality Time (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(qualitytime_informatika)
+
+qualitytime_ilkom <- data$menit_qualitytime[data$fakultas == "Ilmu Komunikasi"]
+hist(qualitytime_informatika, main = "Histogram Frekuensi Waktu Quality Time (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(qualitytime_ilkom)
+
+qualitytime_seni <- data$menit_qualitytime[data$fakultas == "Seni dan Desain"]
+hist(qualitytime_informatika, main = "Histogram Frekuensi Waktu Quality Time(Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(qualitytime_seni)
+
+qualitytime_ekonomi <- data$menit_qualitytime[data$fakultas == "Ekonomi dan Bisnis"]
+hist(qualitytime_informatika, main = "Histogram Frekuensi Waktu Quality Time (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(qualitytime_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI PENGGUNAAN WAKTU UNTUK KEPERLUAN LAINNYA
+```{r}
+lainnya_informatika <- data$menit_lainnya[data$fakultas == "Teknik dan Informatika"]
+hist(lainnya_informatika, main = "Histogram Frekuensi Waktu Lainnya (TI) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(lainnya_informatika)
+
+lainnya_ilkom <- data$menit_lainnya[data$fakultas == "Ilmu Komunikasi"]
+hist(lainnya_ilkom, main = "Histogram Frekuensi Waktu Lainnya (Ilkom) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(lainnya_ilkom)
+
+lainnya_seni <- data$menit_lainnya[data$fakultas == "Seni dan Desain"]
+hist(lainnya_seni, main = "Histogram Frekuensi Waktu Lainnya (Seni) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(lainnya_seni)
+
+lainnya_ekonomi <- data$menit_lainnya[data$fakultas == "Ekonomi dan Bisnis"]
+hist(lainnya_ekonomi, main = "Histogram Frekuensi Waktu Lainnya (Bisnis) oleh Jacintha 53897", xlab = "Menit", col = c("white"))
+table(lainnya_ekonomi)
+```
+
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS BERKAITAN DENGAN KEPERLUAN KULIAH
+```{r}
+h_kuliah_informatika <- table(data$hari_kuliah[data$fakultas == "Teknik dan Informatika"])
+barplot(h_kuliah_informatika, main = "Distribusi Frekuensi Hari Kuliah (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("red", "orange", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_kuliah_ilkom <- table(data$hari_kuliah[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_kuliah_ilkom, main = "Distribusi Frekuensi Hari Kuliah (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("red", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_kuliah_seni <- table(data$hari_kuliah[data$fakultas == "Seni dan Desain"])
+barplot(h_kuliah_seni, main = "Distribusi Frekuensi Hari Kuliah (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("orange", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_kuliah_ekonomi <- table(data$hari_kuliah[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_kuliah_ekonomi, main = "Distribusi Frekuensi Hari Kuliah (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("green", "blue", "pink", "purple"), beside = TRUE)
+```
+
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS BERKAITAN DENGAN HIBURAN
+```{r}
+h_hiburan_informatika <- table(data$hari_hiburan[data$fakultas == "Teknik dan Informatika"])
+barplot(h_hiburan_informatika, main = "Distribusi Frekuensi Hari Hiburan (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "purple"), beside = TRUE)
+
+h_hiburan_ilkom <- table(data$hari_hiburan[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_hiburan_ilkom, main = "Distribusi Frekuensi Hari Hiburan (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("red", "orange", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_hiburan_seni <- table(data$hari_hiburan[data$fakultas == "Seni dan Desain"])
+barplot(h_hiburan_seni, main = "Distribusi Frekuensi Hari Hiburan (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+
+h_hiburan_ekonomi <- table(data$hari_hiburan[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_hiburan_ekonomi, main = "Distribusi Frekuensi Hari Hiburan (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+```
+
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS BERKAITAN DENGAN PENGEMBANGAN DIRI
+```{r}
+h_pengembangan_informatika <- table(data$hari_pengembangandiri[data$fakultas == "Teknik dan Informatika"])
+barplot(h_pengembangan_informatika, main = "Distribusi Frekuensi Hari Pengembangan Diri (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_pengembangan_ilkom <- table(data$hari_pengembangandiri[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_pengembangan_ilkom, main = "Distribusi Frekuensi Hari Pengembangan Diri (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "blue", "purple"), beside = TRUE)
+
+h_pengembangan_seni <- table(data$hari_pengembangandiri[data$fakultas == "Seni dan Desain"])
+barplot(h_pengembangan_seni, main = "Distribusi Frekuensi Hari Pengembangan Diri (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+
+h_pengembangan_ekonomi <- table(data$hari_pengembangandiri[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_pengembangan_ekonomi, main = "Distribusi Frekuensi Hari Pengembangan Diri (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+```
+
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS BERKAITAN DENGAN BERORGANISASI
+```{r}
+h_organisasi_informatika <- table(data$hari_organisasi[data$fakultas == "Teknik dan Informatika"])
+barplot(h_organisasi_informatika, main = "Distribusi Frekuensi Hari Organisasi (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "purple"), beside = TRUE)
+
+h_organisasi_ilkom <- table(data$hari_organisasi[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_organisasi_ilkom, main = "Distribusi Frekuensi Hari Organisasi (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "pink", "purple"), beside = TRUE)
+
+h_organisasi_seni <- table(data$hari_organisasi[data$fakultas == "Seni dan Desain"])
+barplot(h_organisasi_seni, main = "Distribusi Frekuensi Hari Organisasi (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow"), beside = TRUE)
+
+h_organisasi_ekonomi <- table(data$hari_organisasi[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_organisasi_ekonomi, main = "Distribusi Frekuensi Hari Organisasi (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "blue", "purple"), beside = TRUE)
+```
+
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS QUALITY TIME
+```{r}
+h_qualitytime_informatika <- table(data$hari_qualitytime[data$fakultas == "Teknik dan Informatika"])
+barplot(h_qualitytime_informatika, main = "Distribusi Frekuensi Hari Quality Time (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+
+h_qualitytime_ilkom <- table(data$hari_qualitytime[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_qualitytime_ilkom, main = "Distribusi Frekuensi Hari Quality Time (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "green", "blue", "purple"), beside = TRUE)
+
+h_qualitytime_seni <- table(data$hari_qualitytime[data$fakultas == "Seni dan Desain"])
+barplot(h_qualitytime_seni, main = "Distribusi Frekuensi Hari Quality Time (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "blue", "purple"), beside = TRUE)
+
+h_qualitytime_ekonomi <- table(data$hari_qualitytime[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_qualitytime_ekonomi, main = "Distribusi Frekuensi Hari Quality Time (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "blue", "purple"), beside = TRUE)
+```
+
+DISTRIBUSI FREKUENSI HARI DALAM SEMINGGU YANG TERDAPAT AKTIVITAS LAINNYA
+```{r}
+h_lainnya_informatika <- table(data$hari_lainnya[data$fakultas == "Teknik dan Informatika"])
+barplot(h_lainnya_informatika, main = "Distribusi Frekuensi Hari Lainnya (TI) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+
+h_lainnya_ilkom <- table(data$hari_lainnya[data$fakultas == "Ilmu Komunikasi"])
+barplot(h_lainnya_ilkom, main = "Distribusi Frekuensi Hari Lainnya (Ilkom) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "green", "blue", "purple"), beside = TRUE)
+
+h_lainnya_seni <- table(data$hari_lainnya[data$fakultas == "Seni dan Desain"])
+barplot(h_lainnya_seni, main = "Distribusi Frekuensi Hari Lainnya (Seni) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "purple"), beside = TRUE)
+
+h_lainnya_ekonomi <- table(data$hari_lainnya[data$fakultas == "Ekonomi dan Bisnis"])
+barplot(h_lainnya_ekonomi, main = "Distribusi Frekuensi Hari Lainnya (Bisnis) oleh Jacintha 53897", xlab = "Hari", ylab = "Jumlah", col = c("grey", "red", "orange", "yellow", "blue", "purple"), beside = TRUE)
+```
+
+DISTRIBUSI EFEKTIF DAN EFISIEN TIDAK
+```{r}
+panggunaan_efektid_efisien <- table(data$efektif_efisien_belum)
+barplot(efekfit_efisien_ngga, main = "Distribusi Frekuensi Efektif dan Efisien oleh Jacintha 53897", ylab = "Jumlah", col = c("red", "green"), beside = TRUE)
+```
+
+
+
+#UJI HIPOTESIS (+ PEMBUKTIAN GAUSSIAN)
+HIPOTESA 1
+
+H0 = Penggunaan jadwal dan to-do-list mempengaruhi mahasiswa untuk menggunakan waktu secara efektif dan efisien.
+H1 = Penggunaan jadwal dan to-do-list tidak mempengaruhi mahasiswa untuk menggunakan waktu secara efektif dan efisien.
+
+```{r}
+hipo1 <- table(data$efektif_efisien_belum, data$punya_jadwal_todolist)
+chisq.test(hipo1)
+```
+
+
+HIPOTESA 2
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk keperluan kuliahnya.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk keperluan kuliahnya.
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+kuliah_informatika <- data$menit_kuliah[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(kuliah_informatika)
+
+kuliah_ilkom <- data$menit_kuliah[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(kuliah_ilkom)
+
+kuliah_seni <- data$menit_kuliah[data$fakultas == "Seni dan Desain"]
+shapiro.test(kuliah_seni)
+
+kuliah_ekonomi <- data$menit_kuliah[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(kuliah_ekonomi)
+
+#Anova Test
+hipo2 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesis2")
+
+s.hipotesis2<- stack(hipo2)
+aov_hpt2 <- aov(s.hipotesis2$values~s.hipotesis2$ind)
+summary(aov_hpt2)
+
+TukeyHSD(aov_hpt2, conf.level = .95)
+plot(TukeyHSD(aov_hpt2, conf.level = .95))
+```
+
+
+HIPOTESA 3
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk keperluan hiburan.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk keperluan hiburan. 
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+hiburan_informatika <- data$menit_hiburan[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(hiburan_informatika)
+
+hiburan_ilkom <- data$menit_hiburan[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(hiburan_ilkom)
+
+hiburan_seni <- data$menit_hiburan[data$fakultas == "Seni dan Desain"]
+shapiro.test(hiburan_seni)
+
+hiburan_ekonomi <- data$menit_hiburan[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(hiburan_ekonomi)
+
+
+#Anova Test
+hipo3 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesa3")
+
+s.hipotesa3<- stack(hipo3)
+aov_hpt3 <- aov(s.hipotesa3$values~s.hipotesa3$ind)
+summary(aov_hpt3)
+```
+
+
+HIPOTESA 4
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk pengembangan diri.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk pengembangan diri.
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+pengembangan_informatika <- data$menit_pengembangan[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(pengembangan_informatika)
+
+pengembangan_ilkom <- data$menit_pengembangan[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(pengembangan_ilkom)
+
+pengembangan_seni <- data$menit_pengembangan[data$fakultas == "Seni dan Desain"]
+shapiro.test(pengembangan_seni)
+
+pengembangan_ekonomi <- data$menit_pengembangan[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(pengembangan_ekonomi)
+
+
+#Anova Test
+hipo4 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesa4")
+
+s.hipotesa4<- stack(hipo4)
+aov_hpt4 <- aov(s.hipotesa4$values~s.hipotesa4$ind)
+summary(aov_hpt4)
+```
+
+
+HIPOTESA 5
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk keperluan organisasi.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk keperluan organisasi.
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+organisasi_informatika <- data$menit_organisasi[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(organisasi_informatika)
+
+organisasi_ilkom <- data$menit_organisasi[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(organisasi_ilkom)
+
+organisasi_seni <- data$menit_organisasi[data$fakultas == "Seni dan Desain"]
+shapiro.test(organisasi_seni)
+
+organisasi_ekonomi <- data$menit_organisasi[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(organisasi_ekonomi)
+
+
+#Anova Test
+hipo5 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesa5")
+
+s.hipotesa5<- stack(hipo5)
+aov_hpt5 <- aov(s.hipotesa5$values~s.hipotesa5$ind)
+summary(aov_hpt5)
+```
+
+
+HIPOTESA 6
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk quality time.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk quality time.
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+qualityTime_informatika <- data$menit_qualitytime[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(qualityTime_informatika)
+
+qualityTime_ilkom <- data$menit_qualitytime[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(qualityTime_ilkom)
+
+qualityTime_seni <- data$menit_qualitytime[data$fakultas == "Seni dan Desain"]
+shapiro.test(qualityTime_seni)
+
+qualityTime_ekonomi <- data$menit_qualitytime[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(qualityTime_ekonomi)
+
+
+#Anova Test
+hipo6 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesa6")
+
+s.hipotesa6<- stack(hipo6)
+aov_hpt6 <- aov(s.hipotesa6$values~s.hipotesa6$ind)
+summary(aov_hpt6)
+```
+
+
+HIPOTESA 7
+
+H0 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang sama untuk kegiatan lainnya.
+H1 = Mahasiswa di fakultas yang berbeda memiliki rata-rata manajemen waktu yang berbeda untuk kegiatan lainnya.
+
+```{r}
+#Read Excel
+data <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx")
+
+
+#Pembuktian Gaussian
+lainnya_informatika <- data$menit_lainnya[data$fakultas == "Teknik dan Informatika"]
+shapiro.test(lainnya_informatika)
+
+lainnya_ilkom <- data$menit_lainnya[data$fakultas == "Ilmu Komunikasi"]
+shapiro.test(lainnya_ilkom)
+
+lainnya_seni <- data$menit_lainnya[data$fakultas == "Seni dan Desain"]
+shapiro.test(lainnya_seni)
+
+lainnya_ekonomi <- data$menit_lainnya[data$fakultas == "Ekonomi dan Bisnis"]
+shapiro.test(lainnya_ekonomi)
+
+
+#Anova Test
+hipo7 <- readxl::read_excel("G:/My Drive/Saves/dataProject.xlsx", sheet = "hipotesa7")
+
+s.hipotesa7<- stack(hipo7)
+aov_hpt7 <- aov(s.hipotesa7$values~s.hipotesa7$ind)
+summary(aov_hpt7)
+```
+
+#Linear Regression
+
+LM Test 1
+```{r}
+lmTest_menit <- lm(menit_lainnya ~ menit_hiburan + menit_pengembangan + menit_organisasi + menit_qualitytime + menit_kuliah, data = data)
+summary(lmTest_menit)
+par(mfrow = c(2,2))
+
+#Cek Asumsi
+plot(lmTest_menit)
+shapiro.test(lmTest_menit$residuals)
+lmtest::bptest(lmTest_menit)
+lmtest::dwtest(lmTest_menit)
+
+```
+
+LM Test 2
+```{r}
+lmTest_hari <- lm(hari_lainnya ~ hari_hiburan + hari_pengembangandiri + hari_organisasi + hari_qualitytime + hari_kuliah, data = data)
+summary(lmTest_hari)
+
+#Cek Asumsi
+plot(lmTest_hari)
+shapiro.test(lmTest_hari$residuals)
+lmtest::bptest(lmTest_hari)
+lmtest::dwtest(lmTest_hari)
+
+```
+
+
+#Non-Parametric Analytics
+
+variable independen yang digunakan:
+1. hari_kuliah
+2. hari_hiburan
+3. hari_pengembangandiri
+4. hari_organisasi
+5. hari_qualitytime
+
+PEMBUKTIAN TIDAK GAUSSIAN VARIABEL INDEPENDEN
+```{r}
+shapiro.test(data$hari_kuliah)
+shapiro.test(data$hari_hiburan)
+shapiro.test(data$hari_pengembangandiri)
+shapiro.test(data$hari_organisasi)
+shapiro.test(data$hari_qualitytime)
+```
+
+
+Mann-Whitney1(hari_kuliah & hari_hiburan)
+```{r}
+wilcox.test(data$hari_kuliah, data$hari_hiburan)
+
+wilcox.test(data$hari_kuliah, data$hari_hiburan, alternative = "less")
+wilcox.test(data$hari_kuliah, data$hari_hiburan, alternative = "greater")
+```
+
+Mann-Whitney2(hari_hiburan & hari_pengembangandiri)
+```{r}
+wilcox.test(data$hari_hiburan, data$hari_pengembangandiri)
+
+wilcox.test(data$hari_hiburan, data$hari_pengembangandiri, alternative = "less")
+wilcox.test(data$hari_hiburan, data$hari_pengembangandiri, alternative = "greater")
+```
+
+Mann-Whitney3(hari_pengembangandiri & hari_organisasi)
+```{r}
+wilcox.test(data$hari_pengembangandiri, data$hari_organisasi)
+
+wilcox.test(data$hari_pengembangandiri, data$hari_organisasi, alternative = "less")
+wilcox.test(data$hari_pengembangandiri, data$hari_organisasi, alternative = "greater")
+```
+
+Mann-Whitney4(hari_pengembangandiri & hari_qualitytime)
+```{r}
+wilcox.test(data$hari_pengembangandiri, data$hari_qualitytime)
+
+```
+
+
+
+
+
